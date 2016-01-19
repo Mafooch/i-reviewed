@@ -1,12 +1,29 @@
-<p>
-  <strong>Name:</strong>
-  <%= @book.name %>
-</p>
+<div class="book">
+  <%= content_tag :span, "#{@book.name} (#{@book.author})", class: "book-title" %>
+  <%= link_to "Edit", edit_book_path(@book) %>
+</div>
 
-<p>
-  <strong>Author:</strong>
-  <%= @book.author %>
-</p>
+<div id="notes">
+  <%= render @book.notes %>
+  <!-- again, rails knows to look at _note partial and make the each block -->
+</div>
 
-<%= link_to 'Edit', edit_book_path(@book) %> |
+<div>
+  <%= form_for([@book, @book.notes.new]) do |f| %>
+  <!-- again, have to use the two resources since it's nested so submit knows to
+  go to the nested resource path -->
+    <div class="field">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+    <div class="field">
+      <%= f.label :note %>
+      <%= f.text_area :note, size: "25x5" %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Add New Note" %>
+    </div>
+  <% end %>
+</div>
+
 <%= link_to 'Back', books_path %>

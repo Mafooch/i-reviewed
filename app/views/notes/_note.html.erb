@@ -1,0 +1,12 @@
+<div class="note">
+  <div>
+    <%= content_tag :span, "#{note.title} (#{time_ago_in_words note.created_at} ago)", class: "note-title" %>
+    <!-- time_agon_in_words is a rails helper -->
+    <%= link_to "Delete Note", [@book, note], method: :delete %>
+    <!-- because note is a nested resource, we now have to supply the parent object -->
+    <!-- remember have to pass in method argument to show it's a destroy not a show action -->
+  </div>
+  <div><%= simple_format note.note %></div>
+  <!-- simple_format is another rails helper that displays content with a <br/> tag embedded
+  so that it breaks new lines you type in -->
+</div>
