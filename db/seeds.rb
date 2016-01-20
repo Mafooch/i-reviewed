@@ -1,4 +1,5 @@
 Book.destroy_all
+Reviewer.destroy_all
 
 Book.create! [
   { name: "Eloquent Ruby", author: "Russ Olsen" },
@@ -13,3 +14,14 @@ eloquent.notes.create! [
   { title: "Wow", note: "Great book to learn Ruby" },
   { title: "Funny", note: "Doesn't put you to sleep" }
 ]
+
+reviewers = Reviewer.create! [
+  { name: "Joe", password: "abc123" },
+  { name: "Jim", password: "123abc" }
+]
+
+Book.all.each do |book|
+  book.reviewer = reviewers.sample
+  # assigning reviewers randomly to each book
+  book.save!
+end
