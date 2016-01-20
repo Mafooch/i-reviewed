@@ -22,6 +22,9 @@
   </tbody>
 </table>
 
+<%= will_paginate @books %>
+<!-- this is the helper that passes in the params[:page] -->
+
 <br>
 
 <%= link_to 'New Book', new_book_path %>

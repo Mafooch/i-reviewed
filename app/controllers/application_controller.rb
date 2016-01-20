@@ -6,8 +6,9 @@ class ApplicationController < ActionController::Base
   before_action :ensure_login
   helper_method :logged_in?, :current_user
   # by setting these as helper methods like this they are available not just
-  # to the views as we're accustomed to with what's in the helpers directory,
-  # but in the controller as well
+  # to the controllers due to the other controllers inheriting from ApplicationController
+  # but to the views as well. Different from the view helpers defined in
+  # /helpers
 
   # how we lock down the app so the pages aren't accessible until you Login
   protected
