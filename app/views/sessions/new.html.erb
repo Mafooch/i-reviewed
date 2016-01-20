@@ -1,2 +1,22 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<h1>Login</h1>
+
+<%= form_for :reviewer, url: sessions_path do |f| %>
+<!-- this url maps to sessions#create in the controller. we didn't reset this
+one in the routes. this is the url we'll be submitting to. The second argument
+specifies where to submit to -->
+<!-- not creating a new reviewer model, but rather a session -->
+  <div class="field">
+    <%= f.label :name %> <br/>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %> <br/>
+    <%= f.password_field :password %>
+    <!-- special password field hellper to hide what's typed -->
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Login" %>
+  </div>
+<% end %>
