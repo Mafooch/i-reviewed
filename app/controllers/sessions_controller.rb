@@ -1,8 +1,10 @@
 class SessionsController < ApplicationController
+  skip_before_action :ensure_login, only: [:new, :create]
+  # don't wanna lock out just these two actions so the user can actually log in!
   def new
     # Login Page - new.html.erb
   end
-
+# browser establishes a type of connection to this particular server i.e. localhost3000
   def create
     reviewer = Reviewer.find_by(name: params[:reviewer][:name])
     password = params[:reviewer][:password]
